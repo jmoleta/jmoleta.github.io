@@ -1,3 +1,8 @@
+/*
+Linear regression
+y = a + bx
+*/
+
 const imagem = document.getElementById("pictureFromCamera");
 const cnv = document.getElementById('myCanvas');
 const ctx = cnv.getContext('2d');
@@ -9,8 +14,8 @@ cnv.height = window.innerHeight; //965 482
 var inicio = 0;
 var escala = 1;
 var escalamin = 1;
-var escalamult = 0.001
-var escalamultT = 0.00001
+var escalamult = 0.001;
+var escalaAtual = 1;
 var tX = 0;
 var tY = 0;
 var posX = 0;
@@ -26,6 +31,8 @@ var raio = 0;
 
 var press = false;
 var temImagem = false;
+
+var dedos = 0;
 
 imagem.addEventListener('load', function() {
 	tX = 0;
@@ -127,13 +134,19 @@ function redraw()
 
 cnv.addEventListener('touchstart', function(e) {
 	press = true;
+	escalaAtual = escala;
 	switch (e.touches.length) {
 		case 1: {
+			dedos = 1;
 			posX = e.changedTouches[0].pageX - this.offsetLeft;
 			posY = e.changedTouches[0].pageY - this.offsetTop;
 		} break;
 		case 2: {
+			dedos = 2;
 			dist = Math.sqrt((e.touches[1].pageX - e.touches[0].pageX) * (e.touches[1].pageX - e.touches[0].pageX) + (e.touches[1].pageY - e.touches[0].pageY) * (e.touches[1].pageY - e.touches[0].pageY));
+			posX = parseInt((e.changedTouches[1].pageX + e.changedTouches[0].pageX) / 2);
+			posY = parseInt((e.changedTouches[1].pageY + e.changedTouches[0].pageY) / 2);
+			//document.getElementById("log").innerHTML = escalaAtual;
 		} break;
 		default: break;
 	}
@@ -141,10 +154,12 @@ cnv.addEventListener('touchstart', function(e) {
 
 cnv.addEventListener('touchend', function() {
 	press = false;
+	dedos = 0;
 });
 
 cnv.addEventListener('touchcancel', function() {
 	press = false;
+	dedos = 0;
 });
 
 cnv.addEventListener('touchmove', function(e) {
@@ -158,10 +173,20 @@ cnv.addEventListener('touchmove', function(e) {
 				redraw();
 			} break;
 			case 2: {
-				var deltaT = Math.sqrt((e.touches[1].pageX - e.touches[0].pageX) * (e.touches[1].pageX - e.touches[0].pageX) + (e.touches[1].pageY - e.touches[0].pageY) * (e.touches[1].pageY - e.touches[0].pageY)) - dist;
-				escala += deltaT * escalamultT;
-				//document.getElementById("log").innerHTML = deltaT;
-				redraw();
+				if (dedos === 2) {
+					var deltaT = Math.sqrt((e.touches[1].pageX - e.touches[0].pageX) * (e.touches[1].pageX - e.touches[0].pageX) + (e.touches[1].pageY - e.touches[0].pageY) * (e.touches[1].pageY - e.touches[0].pageY)) / dist;
+					escala = escalaAtual * deltaT;
+					tX += parseInt((e.changedTouches[1].pageX + e.changedTouches[0].pageX) / 2) - posX;
+					tY += parseInt((e.changedTouches[1].pageY + e.changedTouches[0].pageY) / 2) - posY;
+					posX = parseInt((e.changedTouches[1].pageX + e.changedTouches[0].pageX) / 2);
+					posY = parseInt((e.changedTouches[1].pageY + e.changedTouches[0].pageY) / 2);
+					redraw();
+				} else {
+					dedos = 2;
+					dist = Math.sqrt((e.touches[1].pageX - e.touches[0].pageX) * (e.touches[1].pageX - e.touches[0].pageX) + (e.touches[1].pageY - e.touches[0].pageY) * (e.touches[1].pageY - e.touches[0].pageY));
+					posX = parseInt((e.changedTouches[1].pageX + e.changedTouches[0].pageX) / 2);
+					posY = parseInt((e.changedTouches[1].pageY + e.changedTouches[0].pageY) / 2);
+				}
 			} break;
 			default: break;
 		}
