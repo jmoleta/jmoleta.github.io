@@ -5,41 +5,31 @@
     <!-- These meta tags are not necessary for the camera to work -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-    <title>Camera in browsers - pixo</title>
+    <title>Colorimetria por imagens digitais</title>
 
     <!-- imports the webpage's stylesheet -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- imports the webpage's javascript file -->
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Demo - Native camera in browsers</h1>
+	<div id="container">
+		<!-- displays the picture uploaded from the native camera -->
+		<img id="pictureFromCamera" style="display: none" />
+		<canvas id="myCanvas"></canvas>
+	</div>
+	<div id="rodape">
+		<!-- The `label` is attached to the hidden file input -->
+		<label for="imageFileInput">
+		  <span class="btn">Obter imagem</span>
 
-    <!-- The `label` is attached to the hidden file input -->
-    <label for="cameraFileInput">
-      <span class="btn">Open camera</span>
-
-      <!-- The hidden file `input` for opening the native camera -->
-      <input
-        id="cameraFileInput"
-        type="file"
-        accept="image/*"
-        capture="environment"
-      />
-    </label>
-	
-	<!-- The `label` is attached to the hidden file input -->
-    <label for="imageFileInput">
-      <span class="btn">Load image</span>
-
-      <!-- The hidden file `input` for opening the native camera -->
-      <input id="imageFileInput" type="file" accept="image/*" />
-    </label>
-
-    <!-- displays the picture uploaded from the native camera -->
-    <img id="pictureFromCamera" />
+		  <!-- The hidden file `input` for opening the native camera -->
+		  <input id="imageFileInput" type="file" accept="image/*" />
+		</label>
+		<span class="btn" id="reduzir">-</span><div id="raio">0</div><span class="btn" id="aumentar">+</span>
+		<div id="rgb1">RGB(m): 255, 255, 255</div><div id="crgb1"></div><div id="rgb2">RGB(s): 255, 255, 255</div><div id="crgb2"></div><div id="log"></div>
+	</div>
   </body>
 </html> 

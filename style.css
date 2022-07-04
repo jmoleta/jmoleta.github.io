@@ -1,25 +1,66 @@
-#cameraFileInput {
-  display: none;
+* {
+    user-select: none;
+}
+
+html, body {
+    height: 100%;
+	padding: 0;
+    margin: 0;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	min-height: 100%;
+}
+
+#container {
+    width: 100%;
+	height: 100%;
+}
+#rodape {
+    position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid black;
+	display: inline-block;
+	min-height: 25px;
 }
 
 #imageFileInput {
   display: none;
 }
 
-#pictureFromCamera {
-  width: 100%;
-  height: auto;
-  margin-top: 16px;
+#myCanvas {
+	display: block;
+}
+
+#rgb1, #rgb2, #raio, #log {
+	display: inline-block;
+	margin: 0px 10px 0px 10px;
+	vertical-align: middle;
+	background-color: white;
+}
+
+#crgb1, #crgb2 {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 1px solid black;
+	vertical-align: middle;
 }
 
 .btn {
   display: inline-block;
-  background-color: #00b531;
+  background-color: #000;
   color: white;
-  padding: 8px 12px;
+  padding: 4px 12px;
   border-radius: 4px;
-  font-size: 16px;
   cursor: pointer;
+  margin: 1px;
 }
 
 .btn:hover {
