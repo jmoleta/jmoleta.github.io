@@ -174,9 +174,9 @@ function redraw()
 		// g=37.8720934044883 e^(-0.00554176249805772 x)
 		// b=176.892790786687-15.2863943968651 ln(x)
 		
-		rc = Math.exp((rgbm[0] / ra) - (rb / ra));
-		gc = Math.log(rgbm[1] / gb) / ga;
-		bc = Math.exp((rgbm[2] / ba) - (bb / ba));
+		rc = Math.exp((parseInt(rgbm[0] / pixels) / ra) - (rb / ra));
+		gc = Math.log(parseInt(rgbm[1] / pixels) / gb) / ga;
+		bc = Math.exp((parseInt(rgbm[2] / pixels) / ba) - (bb / ba));
 		
 		if (rc < 0) rc = 0;
 		if (gc < 0) gc = 0;
