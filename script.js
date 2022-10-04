@@ -34,19 +34,32 @@ var temImagem = false;
 
 var dedos = 0;
 
-// coeficiente angular (a) e linear (b) de r, g e b
-var ra = 3.757672456;
-var rb = -15.78272256;
-var ga = 2.176317657;
-var gb = -84.17929872;
-var ba = 3.140141857;
-var bb = -19.84991797;
+// coeficientes (a) e (b) de r, g e b
+
+// var ra = 3.757672456;
+// var rb = -15.78272256;
+// var ga = 2.176317657;
+// var gb = -84.17929872;
+// var ba = 3.140141857;
+// var bb = -19.84991797;
+
 // var ra = 2.491946479;
 // var rb = 29.96781497;
 // var ga = 1.176538324;
 // var gb = 16.96272588;
 // var ba = 3.205720855;
 // var bb = -8.600020179;
+
+// r=-19.7951757244439+19.4140664728886 ln(x)
+// g=37.8720934044883 e^(-0.00554176249805772 x)
+// b=176.892790786687-15.2863943968651 ln(x)
+
+var ra = 19.4140664728886;
+var rb = -19.7951757244439;
+var ga = -0.00554176249805772;
+var gb = 37.8720934044883;
+var ba = -15.2863943968651;
+var bb = 176.892790786687;
 
 // concentração por r, g e b
 var rc = 0;
@@ -149,13 +162,21 @@ function redraw()
 		
 		//document.getElementById("log").innerHTML = dist;
 		
-		var aux = 0;
-		aux = - Math.log10(rgbm[0] / 255);
-		rc = (- rb * aux) / (ra * (aux - 1));
-		aux = - Math.log10(rgbm[1] / 255);
-		gc = (- gb * aux) / (ga * (aux - 1));
-		aux = - Math.log10(rgbm[2] / 255);
-		bc = (- bb * aux) / (ba * (aux - 1));
+		// var aux = 0;
+		// aux = - Math.log10(rgbm[0] / 255);
+		// rc = (- rb * aux) / (ra * (aux - 1));
+		// aux = - Math.log10(rgbm[1] / 255);
+		// gc = (- gb * aux) / (ga * (aux - 1));
+		// aux = - Math.log10(rgbm[2] / 255);
+		// bc = (- bb * aux) / (ba * (aux - 1));
+		
+		// r=-19.7951757244439+19.4140664728886 ln(x)
+		// g=37.8720934044883 e^(-0.00554176249805772 x)
+		// b=176.892790786687-15.2863943968651 ln(x)
+		
+		rc = Math.exp((rgbm[0] / ra) - (rb / ra));
+		gc = Math.log(rgbm[1] / gb) / ga;
+		bc = Math.exp((rgbm[2] / ba) - (bb / ba));
 		
 		if (rc < 0) rc = 0;
 		if (gc < 0) gc = 0;
