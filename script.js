@@ -155,8 +155,8 @@ function redraw()
 		document.getElementById("rgb1").innerHTML = "RGB(m): " + parseInt(rgbm[0] / pixels) + ", " + parseInt(rgbm[1] / pixels) + ", " + parseInt(rgbm[2] / pixels);
 		document.getElementById("crgb1").style.backgroundColor = 'rgb(' + [parseInt(rgbm[0] / pixels), parseInt(rgbm[1] / pixels), parseInt(rgbm[2] / pixels)].join(',') + ')';
 		
-		document.getElementById("rgb2").innerHTML = "RGB(s): " + parseInt(Math.sqrt(rgbs[0] / pixels)) + ", " + parseInt(Math.sqrt(rgbs[1] / pixels)) + ", " + parseInt(Math.sqrt(rgbs[2] / pixels));
-		document.getElementById("crgb2").style.backgroundColor = 'rgb(' + [parseInt(Math.sqrt(rgbs[0] / pixels)), parseInt(Math.sqrt(rgbs[1] / pixels)), parseInt(Math.sqrt(rgbs[2] / pixels))].join(',') + ')';
+		//document.getElementById("rgb2").innerHTML = "RGB(s): " + parseInt(Math.sqrt(rgbs[0] / pixels)) + ", " + parseInt(Math.sqrt(rgbs[1] / pixels)) + ", " + parseInt(Math.sqrt(rgbs[2] / pixels));
+		//document.getElementById("crgb2").style.backgroundColor = 'rgb(' + [parseInt(Math.sqrt(rgbs[0] / pixels)), parseInt(Math.sqrt(rgbs[1] / pixels)), parseInt(Math.sqrt(rgbs[2] / pixels))].join(',') + ')';
 		
 		document.getElementById("raio").innerHTML = raio;
 		
@@ -174,9 +174,9 @@ function redraw()
 		// g=37.8720934044883 e^(-0.00554176249805772 x)
 		// b=176.892790786687-15.2863943968651 ln(x)
 		
-		rc = Math.exp((parseInt(rgbm[0] / pixels) / ra) - (rb / ra));
-		gc = Math.log(parseInt(rgbm[1] / pixels) / gb) / ga;
-		bc = Math.exp((parseInt(rgbm[2] / pixels) / ba) - (bb / ba));
+		rc = Math.exp(((rgbm[0] / pixels) - 43.263) / 24.501);
+		gc = Math.exp(((rgbm[1] / pixels) + 18.526) / 13.366);
+		bc = Math.exp(((rgbm[2] / pixels) - 143.08) / (-15.5));
 		
 		if (rc < 0) rc = 0;
 		if (gc < 0) gc = 0;
