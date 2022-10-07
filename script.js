@@ -174,15 +174,15 @@ function redraw()
 		// g=37.8720934044883 e^(-0.00554176249805772 x)
 		// b=176.892790786687-15.2863943968651 ln(x)
 		
-		rc = Math.exp(((rgbm[0] / pixels) - 43.263) / 24.501);
-		gc = Math.exp(((rgbm[1] / pixels) + 18.526) / 13.366);
-		bc = Math.exp(((rgbm[2] / pixels) - 143.08) / (-15.5));
+		rc = Math.exp(((rgbm[0] / pixels) - 42.166) / 24.848);
+		//gc = Math.exp(((rgbm[1] / pixels) + 18.526) / 13.366);
+		bc = Math.exp(((rgbm[2] / pixels) - 130.9) / (-10.62));
 		
 		if (rc < 0) rc = 0;
-		if (gc < 0) gc = 0;
+		//if (gc < 0) gc = 0;
 		if (bc < 0) bc = 0;
 		
-		document.getElementById("log").innerHTML = "(" + parseFloat(rc.toFixed(2)) + ", " + parseFloat(gc.toFixed(2))  + ", " + parseFloat(bc.toFixed(2)) + ") mg/L CaCO3";
+		document.getElementById("log").innerHTML = parseFloat((rc + bc)/2).toFixed(1) + " mg/L CaCO3";
 	}
 }
 
