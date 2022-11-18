@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-
-    <!-- These meta tags are not necessary for the camera to work -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-    <title>Colorimetria por imagens digitais</title>
-
-    <!-- imports the webpage's stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-	<div id="container">
-		<!-- displays the picture uploaded from the native camera -->
-		<img id="pictureFromCamera" style="display: none" />
-		<canvas id="myCanvas"></canvas>
-	</div>
-	<div id="rodape">
-		<!-- The `label` is attached to the hidden file input -->
-		<label for="imageFileInput">
-		  <span class="btn">Obter imagem</span>
-
-		  <!-- The hidden file `input` for opening the native camera -->
-		  <input id="imageFileInput" type="file" accept="image/*" />
-		</label>
-		<span class="btn" id="reduzir">-</span><div id="raio">0</div><span class="btn" id="aumentar">+</span>
-		<div id="rgb1">RGB(m): 255, 255, 255</div><div id="crgb1"></div><div id="rgb2">RGB(s): 255, 255, 255</div><div id="crgb2"></div><div id="log"></div>
-	</div>
-  </body>
-</html> 
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>Colorimetria por imagens digitais</title>
+<link rel="stylesheet" href="style.css" />
+<script src="script.js" defer></script>
+</head>
+<body>
+<div id="container">
+<img id="pictureFromCamera" style="display: none" />
+<canvas id="myCanvas"></canvas>
+</div>
+<div id="rodape">
+<label for="imageFileInput">
+<span class="btn">Obter imagem</span>
+<input id="imageFileInput" type="file" accept="image/*" />
+</label>
+<span class="btn" id="reduzir">-</span><div id="raio">0</div><span class="btn" id="aumentar">+</span>
+<div id="rgb1">RGB(m): 255, 255, 255</div><div id="crgb1"></div><div id="log"></div>
+</div>
+</body>
+</html>
